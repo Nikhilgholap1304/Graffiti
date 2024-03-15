@@ -1,9 +1,12 @@
 {
   "name": "mern",
+  "homepage": "https://Nikhilgholap1304.github.io/Graffiti",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "frontend": "cd frontend && npm start",
     "backend": "cd backend && npm start",
@@ -19,6 +22,7 @@
     "chart.js": "^4.4.1",
     "concurrently": "^8.2.0",
     "file-saver": "^2.0.5",
+    "gh-pages": "^6.1.1",
     "gridfs-stream": "^1.1.1",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
