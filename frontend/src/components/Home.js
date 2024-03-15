@@ -1,0 +1,1271 @@
+import "./style/light_dark_mode.css";
+import "./style/Home.css";
+import React from "react";
+import Header from "./Header"
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef, useContext } from 'react';
+import { HiOutlineSearch } from 'react-icons/hi';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRectangleXmark, faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { LuPaintbrush2 } from 'react-icons/lu';
+import Graffiti_logo from "./img/graffiti_tri2.png";
+import genre1 from "./img/genre1.jpg";
+import genre2 from "./img/genre2.jpg";
+import genre3 from "./img/genre3.jpg";
+import genre4 from "./img/genre4.jpg";
+import genre5 from "./img/genre5.mp4";
+import Default_panda from "./img/default_panda.png"
+import { AuthContext } from "../Contexts/AuthContext.js";
+
+// upload style
+import "./Profile_Collection/Prof_style/Upload.css"
+import IconButton from '@mui/material/IconButton';
+import Button from '@mui/material/Button';
+import demoCardImage from "./img/genre2.jpg";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import CommentIcon from '@mui/icons-material/Comment';
+import ReportGmailerrorredRoundedIcon from '@mui/icons-material/ReportGmailerrorredRounded';
+import SimCardDownloadRoundedIcon from '@mui/icons-material/SimCardDownloadRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import CircularProgress from '@mui/material/CircularProgress';
+import Skeleton from '@mui/material/Skeleton'
+import axios from 'axios';
+import { styled } from '@mui/material/styles';
+import Badge from '@mui/material/Badge';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
+import AnimatedEmptyMsgMp4Light from "./img/AnimatedSvgLight.gif"
+import AnimatedEmptyMsgMp4Dark from "./img/AnimatedSvgDark.gif"
+import Accordion from '@mui/material/Accordion';
+import AccordionActions from '@mui/material/AccordionActions';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
+import { color } from 'framer-motion';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContentText from '@mui/material/DialogContentText';
+import CloseIcon from '@mui/icons-material/Close';
+import Typography from '@mui/material/Typography';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+import { ToastContainer, toast } from "react-toastify";
+import LoadingButton from '@mui/lab/LoadingButton';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import LinearProgress from '@mui/material/LinearProgress';
+import Box from '@mui/material/Box';
+import BookmarkAddRoundedIcon from '@mui/icons-material/BookmarkAddRounded';
+import BookmarkAddedRoundedIcon from '@mui/icons-material/BookmarkAddedRounded';
+import BookmarkAddOutlinedIcon from '@mui/icons-material/BookmarkAddOutlined';
+import Pagination from '@mui/material/Pagination';
+import Container from '@mui/material/Container';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import PinterestIcon from '@mui/icons-material/Pinterest';
+import Footer from "./Footer.js";
+import NotFound from "./img/NotFound.png";
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
+
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    backgroundColor: '#44b700',
+    color: '#44b700',
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    '&::after': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%',
+      animation: 'ripple 1.2s infinite ease-in-out',
+      border: '1px solid currentColor',
+      content: '""',
+    },
+  },
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'scale(.8)',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'scale(2.4)',
+      opacity: 0,
+    },
+  },
+}));
+
+const Home = () => {
+  const [searchValue, setSearchValue] = useState('');
+  const [isGlimpsHovered, setIsGlimpsHovered] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const Navigate = useNavigate()
+
+  const [openFullyDesign, setOpenFullyDesign] = useState(false);
+  const [isFullyOpenDesignScrolled, setIsFullyOpenDesignScrolled] = useState(false);
+  const [emptyDesign, setEmptyDesign] = useState(true);
+  const [uploadedDesign, setUploadedDesign] = useState([]);
+  const [singleDesign, setSingleDesign] = useState([]);
+  const [singleDesignUD, setSingleDesignUD] = useState([]);
+  const [profilePic, setProfilePic] = useState();
+  const [isDesignLoading, setIsDesignLoading] = useState(true);
+  const [isEmptyMsgCirLoader, setEmptyMsgCirLoader] = useState(true);
+  const StickyHeaderFODRef = useRef(null);
+  const [isDesignVidHovered, setIsDesignVidHovered] = useState(false);
+  const [lightboxIsOpen, setLightboxIsOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const [isFODLoading, setIsFODLoading] = useState(true)
+  const [likedDesigns, setLikedDesigns] = useState([]);
+  const [reportDialogOpen, setReportDialogOpen] = useState(false);
+  const [reportReason, setReportReason] = useState('Vulger Content');
+  const [confirmDelActive, setConfirmDelActive] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [buffer, setBuffer] = useState(10);
+  const [downloadInProgress, setDownloadInProgress] = useState(false);
+  const [isNoSessionModalOpen, setIsNoSessionModalOpen] = useState(false);
+  const [isFilteredDesign, setIsFilteredDesign] = useState(uploadedDesign);
+  const [isSearchSessionActive, setIsSearchSessionActive] = useState(false)
+  const [usersBadgeData, setUsersBadgeData] = useState([]);
+  const [page, setPage] = useState(1);
+  const { sessionUserId } = useContext(AuthContext);
+  const designsPerPage = 16;
+  const sessionToken = localStorage.getItem('sessionToken');
+
+  const progressRef = useRef(() => { });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const handleMouseEnterGlimps1 = () => {
+    setIsGlimpsHovered(1);
+  };
+  const handleMouseEnterGlimps2 = () => {
+    setIsGlimpsHovered(2);
+  };
+  const handleMouseEnterGlimps3 = () => {
+    setIsGlimpsHovered(3);
+  };
+  const handleMouseEnterGlimps4 = () => {
+    setIsGlimpsHovered(4);
+  };
+  const handleMouseEnterGlimps5 = () => {
+    setIsGlimpsHovered(5);
+  };
+
+  const handleMouseLeaveGlimps = () => {
+    setIsGlimpsHovered(null)
+  };
+
+  const glimps = [
+    {
+      imagePath: genre1,
+    },
+    {
+      imagePath: genre2,
+    },
+    {
+      imagePath: genre3,
+    },
+    {
+      imagePath: genre4,
+    },
+    {
+      imagePath: genre5,
+      isVideo: true,
+    }
+  ];
+
+  // const glimpsEffectOpacity =
+  //   windowWidth >= 1300 && isGlimpsHovered === null
+  //     ? { opacity: 1 } : { opacity: 0.7, position: 'absolute', zIndex: 7 };
+
+  // Function to handle input value change
+  const handleInputChange = (event) => {
+    setIsSearchSessionActive(true)
+    const query = event.target.value;
+    setSearchValue(query);
+    const filteredDesigns = uploadedDesign.filter((design) =>
+      design.title.toLowerCase().includes(query.toLowerCase())
+    );
+    // Update the displayed designs
+    setIsFilteredDesign(filteredDesigns);
+  };
+
+  // Function to clear the input field
+  const handleClearInput = () => {
+    setIsSearchSessionActive(false)
+    setSearchValue('');
+    const filteredDesigns = uploadedDesign.filter((design) =>
+      design.title.includes('')
+    );
+    // Update the displayed designs
+    setIsFilteredDesign(filteredDesigns);
+  };
+
+  const handleSearchClick = () => {
+    setIsSearchSessionActive(true)
+    const filteredDesigns = uploadedDesign.filter((design) =>
+      design.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    // Update the displayed designs
+    setIsFilteredDesign(filteredDesigns);
+  }
+  const handlePreSearchValues = (value) => {
+    setIsSearchSessionActive(true)
+    setSearchValue(value);
+    const filteredDesigns = uploadedDesign.filter((design) =>
+      design.title.toLowerCase().includes(value.toLowerCase())
+    );
+    // Update the displayed designs
+    setIsFilteredDesign(filteredDesigns);
+  }
+
+  useEffect(() => {
+    progressRef.current = () => {
+      if (progress > 100) {
+        setProgress(0);
+        setBuffer(10);
+      } else {
+        const diff = Math.random() * 10;
+        const diff2 = Math.random() * 10;
+        setProgress(progress + diff);
+        setBuffer(progress + diff + diff2);
+      }
+    };
+  });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      progressRef.current();
+    }, 500);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  // const handleConfirmClick = () => {
+  //   setLoading(true);
+  //   setTimeout(async () => {
+  //     await DeleteDesign();
+  //   }, 3000);
+  // }
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (confirmDelActive && !e.target.closest(".signout_all_popup_box")) {
+        // Clicked outside the modal, close it
+        setConfirmDelActive(false);
+      }
+    };
+    if (loading === false) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+    return () => {
+      // Cleanup: remove the event listener when the component unmounts
+      if (loading === false) {
+        document.removeEventListener("mousedown", handleOutsideClick);
+      }
+    };
+  }, [confirmDelActive, setConfirmDelActive, loading, setLoading]);
+
+  const handleClickReportDialogOpen = () => {
+    setReportDialogOpen(true);
+  };
+  const handleCloseReportDialog = () => {
+    setReportDialogOpen(false);
+  };
+
+  let DetailImages = null;
+  if (singleDesign.files) {
+    DetailImages = singleDesign.files.map(file => `data:${file.type};base64,${file.data}`);
+  }
+
+  const openLightbox = (index) => {
+    setPhotoIndex(index);
+    setLightboxIsOpen(true);
+  };
+  // Function to close the lightbox
+  const closeLightbox = () => {
+    setLightboxIsOpen(false);
+  };
+
+  const [selectedMode, setSelectedMode] = useState(() => {
+    const storedMode = localStorage.getItem('selectedMode');
+    return storedMode;
+  });
+  const handleUploadNavigate = () => {
+    setTimeout(() => {
+      Navigate('/NewUpload')
+    }, 200);
+  }
+  const handleOpenFullyDesign = async (designId) => {
+    if (!sessionToken) {
+      return setIsNoSessionModalOpen(true);
+    } else {
+      setOpenFullyDesign(true)
+    }
+    try {
+      const config = {
+        headers: {
+          Authorization: sessionToken,
+        },
+      };
+      const res = await axios.get(`/fetch_Individual_design/${designId.toString()}`, config);
+      console.log("openFullydesign")
+      if (res.status === 401) {
+        console.log("Unuthorized user")
+      }
+      else if (res.status === 403) {
+        console.log("Unuthorized access to design")
+      }
+      else if (res.status === 200) {
+        console.log("Success")
+        setSingleDesign(res.data.designDetail);
+        setSingleDesignUD(res.data.ShortUserDetails);
+        setTimeout(() => {
+          setIsFODLoading(false);
+        }, 2000);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const handleCloseFullyOpenDesign = () => {
+    setOpenFullyDesign(false)
+    setIsFODLoading(true)
+  }
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollFODPosition = StickyHeaderFODRef.current.scrollTop;
+      // Set a threshold value based on when you want the border to change color
+      const threshold = window.innerWidth < 950 ? (window.innerWidth < 670 ? 70 : 100) : 115;
+
+      setIsFullyOpenDesignScrolled(scrollFODPosition > threshold);
+    };
+    // Attach the scroll event listener
+    StickyHeaderFODRef.current.addEventListener('scroll', handleScroll);
+    // Clean up the event listener on component unmount
+    return () => {
+      if (StickyHeaderFODRef.current) {
+        StickyHeaderFODRef.current.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, []);
+  // Function to handle liking a design
+  const handleToggleLike = async (designId, e) => {
+    e.stopPropagation();
+    if (!sessionToken) {
+      return setIsNoSessionModalOpen(true);
+    }
+    try {
+      const res = await axios.post(`/like_design/${designId}`, null, {
+        headers: {
+          Authorization: sessionToken, // Include your authorization token here
+        },
+      });
+      if (res.status === 401) {
+        console.log("Unauthorized access without session");
+      } else if (res.status === 403) {
+        console.log("Design not found");
+      } else if (res.status === 200) {
+        console.log("Liked or unliked design");
+        const updatedLikes = res.data.likes;
+        // setUploadedDesign((prevDesigns) =>
+        //   prevDesigns.map((design) =>
+        //     design._id === designId ? { ...design, likes: updatedLikes } : design
+        //   )
+        // );
+        setSingleDesign(res.data.updatedDesign)
+        console.log("Liked or unliked");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    // if (likedDesigns.includes(designId)) {
+    //   // Design is already liked, so dislike it
+    //   setLikedDesigns(likedDesigns.filter(id => id !== designId));
+    // } else {
+    //   // Design is not liked, so like it
+    //   setLikedDesigns([...likedDesigns, designId]);
+    // }
+  };
+  const handleToggleBookMark = async (designId, e) => {
+    e.stopPropagation();
+    if (!sessionToken) {
+      return setIsNoSessionModalOpen(true);
+    }
+    try {
+      const res = await axios.post(`/bookmark_design/${designId}`, null, {
+        headers: {
+          Authorization: sessionToken, // Include your authorization token here
+        },
+      });
+      if (res.status === 401) {
+        console.log("Unauthorized access without session");
+      } else if (res.status === 403) {
+        console.log("Design not found");
+      } else if (res.status === 200) {
+        console.log("Bookmarked or Unbookmarked design");
+        const updatedLikes = res.data.likes;
+        // setUploadedDesign((prevDesigns) =>
+        //   prevDesigns.map((design) =>
+        //     design._id === designId ? { ...design, likes: updatedLikes } : design
+        //   )
+        // );
+        setSingleDesign(res.data.updatedDesign)
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    // if (likedDesigns.includes(designId)) {
+    //   // Design is already liked, so dislike it
+    //   setLikedDesigns(likedDesigns.filter(id => id !== designId));
+    // } else {
+    //   // Design is not liked, so like it
+    //   setLikedDesigns([...likedDesigns, designId]);
+    // }
+  };
+  useEffect(() => {
+    const fetchDesignData = async () => {
+      try {
+        const res = await axios.get('/fetch_general_design_data')
+        if (!res.data || res.data.length === 0 || res.status === 404) {
+          console.log('No file Uploaded');
+          setEmptyDesign(true);
+          setTimeout(() => {
+            setEmptyMsgCirLoader(false)
+          }, 1500);
+        } else if (res.status === 200) {
+          // console.log(res.data);
+          setUploadedDesign(res.data.designs);
+          setUsersBadgeData(res.data.formattedUsers);
+          console.log(sessionUserId)
+          // console.log('uploadedDesign :', uploadedDesign);
+          setEmptyDesign(false)
+          setTimeout(() => {
+            setEmptyMsgCirLoader(false)
+          }, 1500);
+          setTimeout(() => {
+            setIsDesignLoading(false); // Set isLoading to false after 2 seconds
+          }, 3000);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    fetchDesignData();
+  }, [
+    setUploadedDesign, openFullyDesign, setSingleDesign, handleToggleLike, handleToggleBookMark, handleOpenFullyDesign, handleInputChange
+  ])
+
+  const isDesigner = (designUserId) => {
+    const designerUsers = usersBadgeData.filter(user => user.hasDesignerBadge);
+    return designerUsers.some(user => user.userId === designUserId);
+  };
+
+  useEffect(() => {
+    if (isEmptyMsgCirLoader)
+      setIsFilteredDesign(uploadedDesign);
+  }, [uploadedDesign])
+
+  const totalDesigns = isFilteredDesign.length;
+  const totalPages = Math.ceil(totalDesigns / designsPerPage);
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+    setIsDesignLoading(true);
+    setTimeout(() => {
+      setIsDesignLoading(false);
+    }, 1000);
+  };
+
+  const startIndex = (page - 1) * designsPerPage;
+  const endIndex = startIndex + designsPerPage;
+  const currentDesigns = isSearchSessionActive ? isFilteredDesign.slice(startIndex, endIndex) : uploadedDesign.slice(startIndex, endIndex);
+
+  useEffect(() => {
+    const DesignVideoFile = document.getElementById('DesignVideoFile');
+
+    if (DesignVideoFile) {
+      if (isDesignVidHovered) {
+        DesignVideoFile.play();
+      } else {
+        DesignVideoFile.pause();
+        DesignVideoFile.currentTime = 0;
+      }
+    }
+  }, [isDesignVidHovered]);
+
+  const handleReportRadioChange = (e) => {
+    setReportReason(e.target.value);
+  };
+
+  const handleReportDesign = async () => {
+    setReportDialogOpen(false);
+    try {
+      if (!sessionToken) {
+        return console.log("Unauthorized");
+      } else {
+        console.log(reportReason);
+        const config = {
+          method: 'POST',
+          headers: {
+            Authorization: sessionToken
+          },
+          body: {
+            reportReason
+          },
+        }
+        const res = await fetch(`/report_design/${singleDesign._id}/${reportReason}`, config)
+        // const res = await axios.post(`/report_design/${singleDesign._id}`, { reportReason }, config)
+        if (res.status === 401) {
+          return console.log('Unauthorized');
+        } else if (res.status === 403) {
+          const myPromise = new Promise((resolve) =>
+            setTimeout(resolve, 1000)
+          );
+          toast.promise(myPromise, {
+            pending: "Just a sec...",
+          });
+          toast.error('You had already reported');
+        } else if (res.status === 200) {
+          console.log("successfully reported");
+          const myPromise = new Promise((resolve) =>
+            setTimeout(resolve, 2000)
+          );
+          toast.promise(myPromise, {
+            pending: "Just a sec...",
+            success: "Successfully reported",
+            error: "Error"
+          });
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  const signOutCancel = async () => {
+    if (loading === false) {
+      setConfirmDelActive(null)
+    }
+  }
+  // const DeleteDesign = async () => {
+  //   try {
+  //     if (sessionToken) {
+  //       const config = {
+  //         method: 'POST',
+  //         headers: {
+  //           Authorization: sessionToken,
+  //         },
+  //       };
+
+  //       const res = await fetch(`/delete_design/${singleDesign._id}`, config);
+  //       // const res = await axios.delete('/logout-all', config)
+  //       // console.log("imagefile: ", res.data)
+  //       if (res.status === 401) {
+  //         console.log("Design not found");
+  //       } else if (res.status === 200) {
+  //         console.log('Deleted the design');
+  //         toast.success('Design deleted');
+  //         setConfirmDelActive(false);
+  //         setOpenFullyDesign(false);
+  //         setIsFODLoading(true);
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  //   setLoading(false);
+  // }
+  const handleDownload = async () => {
+    setDownloadInProgress(true);
+    setProgress(0);
+    setBuffer(10);
+    setTimeout(async () => {
+      try {
+        const response = await axios.get(`/download_design/${singleDesign._id}`, {
+          headers: {
+            'Authorization': sessionToken
+          }
+        }, {
+          responseType: 'arraybuffer', // Important for handling binary data
+          onDownloadProgress: (progressEvent) => {
+            const { loaded, total } = progressEvent;
+            const percentCompleted = (loaded / total) * 100;
+            setProgress(percentCompleted);
+            setBuffer(percentCompleted + 10);
+          }, // Specify the response type as 'blob'
+        });
+
+        // Create a temporary anchor element and trigger a click to download the file
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', `design_${singleDesign._id}_files.zip`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(() => {
+          setDownloadInProgress(false);
+        }, 500);
+      } catch (error) {
+        setDownloadInProgress(false);
+        console.error('Error during download:', error);
+        // Handle error, show a message to the user, etc.
+      }
+    }, 2000);
+  };
+
+  // useEffect(() => {
+  //   if (sessionToken) {
+  //     const res = axios.get('/getUserId')
+  //     setSessionUserId(res.data)
+  //   }
+  // }, [sessionToken])
+
+  const handleNoSessionModalClose = () => {
+    setIsNoSessionModalOpen(false);
+  };
+
+  useEffect(() => {
+    const filteredDesigns = uploadedDesign.filter((design) =>
+      design.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    setIsFilteredDesign(filteredDesigns);
+  }, [openFullyDesign, setSingleDesign, handleToggleLike, handleToggleBookMark, isSearchSessionActive, uploadedDesign])
+
+  const handleMessageClicked = (designId) => {
+    if (!sessionToken) {
+      return setIsNoSessionModalOpen(true);
+    }
+    Navigate(`/Comments/${designId}`);
+  }
+
+  return (
+    <>
+      <Header
+        headerIndex={windowWidth >= 1300 && isGlimpsHovered !== null ? -1 : 6}
+      />
+      <section className="header2"
+      // style={windowWidth >= 1300 ? glimpsEffectOpacity : {}}
+      >
+        <div className="brand_cont">
+          <div className="brand_logo">
+            <img src={Graffiti_logo} alt="" />
+          </div>
+          <h3 className="brand_logo_name">Graffiti</h3>
+        </div>
+        <div className="header2_mid_cont">
+          <h3 className="heavy_description">A design hub, fulfills your design seek</h3>
+          <h2 className="light_description">Find all your design assets to enhance your creativity, UI and projects</h2>
+          <div className="search_cont">
+            <div className="brush_ico"><LuPaintbrush2 className="brush_ico_svg" /></div>
+            <input
+              type="text"
+              class="search_input_bar"
+              placeholder="Search all assets"
+              value={searchValue}
+              onChange={handleInputChange}
+            />
+            <div className={`cancel_ico ${searchValue.length > 0 ? 'active' : ''}`} onClick={handleClearInput}>
+              <FontAwesomeIcon icon={faXmark} />
+            </div>
+            <div className="search_ico" onClick={handleSearchClick}><HiOutlineSearch /></div>
+          </div>
+        </div>
+        <div className="search_suggest_block">
+          <div className="search_suggest" onClick={() => handlePreSearchValues('Nature')}>
+            <HiOutlineSearch className="suggest_search_ico" />
+            <p className="search_sugg_text">Nature</p>
+          </div>
+          <div className="search_suggest" onClick={() => handlePreSearchValues('Background')}>
+            <HiOutlineSearch className="suggest_search_ico" />
+            <p className="search_sugg_text">Background</p>
+          </div>
+          <div className="search_suggest" onClick={() => handlePreSearchValues('Vector')}>
+            <HiOutlineSearch className="suggest_search_ico" />
+            <p className="search_sugg_text">Vector</p>
+          </div>
+        </div>
+        <div className="genre_glimps_cont">
+          <ul className="genre_glimps_collection">
+            <li
+              onMouseEnter={handleMouseEnterGlimps1}
+              onMouseLeave={handleMouseLeaveGlimps}
+            >
+              <div className="genre_img_container">
+                <div className="genre_img_container_border">
+                  <img src={genre1} alt="" />
+                </div>
+              </div>
+              <h3 className="genre_glimps_title">
+                Vectors
+              </h3>
+            </li>
+            <li
+              onMouseEnter={handleMouseEnterGlimps2}
+              onMouseLeave={handleMouseLeaveGlimps}
+            >
+              <div className="genre_img_container">
+                <div className="genre_img_container_border">
+                  <img src={genre2} alt="" />
+                </div>
+              </div>
+              <h3 className="genre_glimps_title">
+                Landing Pages
+              </h3>
+            </li>
+            <li
+              onMouseEnter={handleMouseEnterGlimps3}
+              onMouseLeave={handleMouseLeaveGlimps}
+            >
+              <div className="genre_img_container">
+                <div className="genre_img_container_border">
+                  <img src={genre3} alt="" />
+                </div>
+              </div>
+              <h3 className="genre_glimps_title">
+                Themes
+              </h3>
+            </li>
+            <li
+              onMouseEnter={handleMouseEnterGlimps4}
+              onMouseLeave={handleMouseLeaveGlimps}
+            >
+              <div className="genre_img_container">
+                <div className="genre_img_container_border">
+                  <img src={genre4} alt="" />
+                </div>
+              </div>
+              <h3 className="genre_glimps_title">
+                Portfolios
+              </h3>
+            </li>
+            <li
+              onMouseEnter={handleMouseEnterGlimps5}
+              onMouseLeave={handleMouseLeaveGlimps}
+            >
+              <div className="genre_img_container">
+                <div className="genre_img_container_border">
+                  <video autoPlay loop muted>
+                    <source src={genre5} type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+              <h3 className="genre_glimps_title">
+                Parallax
+              </h3>
+            </li>
+          </ul>
+        </div>
+        {/* This is to be used if you want a proper overlaying according to freepik  */}
+        <div className="hero_overlay">
+
+          <img src={isGlimpsHovered !== null && (glimps[isGlimpsHovered - 1].imagePath)} className={`hover_bg ${isGlimpsHovered && isGlimpsHovered !== 5 ? 'opacity' : ''}`} />
+
+          <video autoPlay loop muted className={`hover_vid_bg ${isGlimpsHovered && isGlimpsHovered == 5 ? 'opacity' : ''}`}>
+            <source src={genre5} type="video/mp4" />
+          </video>
+
+        </div>
+      </section>
+      {/* <div className={`hero_overlay ${isGlimpsHovered ? 'active':''}`}>
+        <img src={isGlimpsHovered !== null && glimps[isGlimpsHovered - 1].imagePath} className={`hover_bg ${isGlimpsHovered !== null && isGlimpsHovered !== 5 ? 'opacity' : ''}`} alt="" />
+        <video autoPlay loop muted className = {`hover_vid_bg ${isGlimpsHovered !== null && isGlimpsHovered == 5 ? 'opacity' : ''}`} >
+          <source src={genre5} type="video/mp4" />
+        </video>
+      </div> */}
+      {/* card phase starts */}
+      {isEmptyMsgCirLoader ? (
+        <div className="CirculerP" style={{ position: "absolute", display: "flex", width: "100%", height: '100%', alignItems: "center", justifyContent: "center" }}>
+          <CircularProgress sx={{ color: "#eee" }} />
+        </div>
+      ) : (
+        <>
+
+          {!emptyDesign ? (
+            <section className="CardSection Home">
+              <ul className="CardSectionContainer">
+                {searchValue && (
+                  <div className="resultTextCont">
+                    <h3>Showing results for <b>{searchValue}</b></h3>
+                  </div>
+                )}
+                {currentDesigns.map((design, index) => (
+                  <li className="Card" key={design._id}>
+                    {isDesignLoading ? (
+                      <>
+                        <Skeleton variant="rectangular" sx={{ borderRadius: '5px', width: "100%", height: "200px" }} id="design_img_cont_skele" />
+                        <div style={{ display: 'flex', alignItems: "center", width: "100%", justifyContent: "space-between", gap: "5px", overflow: "hidden" }}>
+                          <Skeleton variant="circular" width={40} height={40} />
+                          <Skeleton variant="rectangular" width={200} height={20} sx={{ borderRadius: '5px' }} />
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <div className="CardFrontImageContainer"
+                          onMouseEnter={() => setIsDesignVidHovered(true)}
+                          onMouseLeave={() => setIsDesignVidHovered(false)}
+                          onClick={() => handleOpenFullyDesign(design._id)}>
+                          {design.files[0].type.startsWith('video/') ? (
+                            <video
+                              src={`data:${design.files[0].type};base64,${design.files[0].data}`}
+                              id="DesignVideoFile"
+                              autoPlay={false}
+                              loop
+                              muted
+                              playsInline
+                              alt={`File from ${design.title}`}></video>
+                          ) : (
+                            <img src={`data:${design.files[0].type};base64,${design.files[0].data}`} alt={`File from ${design.title}`} />
+                          )}
+                          <div className="HoverTitle_LikeCont">
+                            <div className='innerHoverTLCont'>
+                              <p className="HvrDesignTitle">
+                                {design.title}
+                              </p>
+                              <div className="HvrDesignLike_BMCont">
+                                <div className='Like_cont'>
+                                  <IconButton onClick={(e) => handleToggleLike(design._id, e)} className='FavIconCont'>
+                                    {(design.likes.includes(sessionUserId)) && sessionToken ? (
+                                      <FavoriteIcon className='FavIcon' />
+                                    ) : (
+                                      <FavoriteBorderIcon className='FavIcon' />
+                                    )}
+                                  </IconButton>
+                                  <span className='LikeToolTip'>{(design.likes.includes(sessionUserId)) && sessionToken ? (
+                                    'Unlike'
+                                  ) : (
+                                    'Like'
+                                  )}</span>
+                                </div>
+                                <div className='BookMark_cont'>
+                                  <IconButton className='BookMarkIconCont' onClick={(e) => handleToggleBookMark(design._id, e)}>
+                                    {(design.bookmarks.includes(sessionUserId)) && sessionToken ? (
+                                      <BookmarkAddedRoundedIcon className='BM_Icon' />
+                                    ) : (
+                                      <BookmarkAddOutlinedIcon className='BM_Icon' />
+                                    )}
+                                  </IconButton>
+                                  <span className='BMToolTip'>{(design.bookmarks.includes(sessionUserId)) && sessionToken ? (
+                                    'Unpin'
+                                  ) : (
+                                    'Pin'
+                                  )}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="CardLowerPart">
+                          <div className='CardUploadersName&PicCont'>
+                            <StyledBadge
+                              overlap="circular"
+                              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                              variant={isDesigner(design.userId) === true ? "dot" : "standard"}
+                              className='CardUploadersPicCont'
+                            >
+                              <Avatar alt="Remy Sharp" src={design.UserPic || Default_panda} />
+                            </StyledBadge>
+                            <Button variant="text" className='CardUploadersNameCont'>
+                              <p className='CardUploaderName'>{design.userName}</p>
+                            </Button>
+                          </div>
+                          <div className="Card_Comments_Views_LikeCont">
+                            <div className="CardComments">
+                              <IconButton onClick={() => handleMessageClicked(design._id)}>
+                                <CommentIcon />
+                              </IconButton>
+                              <p className="noOfComments">
+                                {design.commentsCount ? design.commentsCount : 0}
+                              </p>
+                            </div>
+                            <div className="CardViews">
+                              <IconButton>
+                                <RemoveRedEyeIcon />
+                              </IconButton>
+                              <p className="noOfViews">
+                                {design.views.length}
+                              </p>
+                            </div>
+                            <div className="CardLikes">
+                              <IconButton onClick={(e) => handleToggleLike(design._id, e)}>
+                                {(design.likes.includes(sessionUserId)) && sessionToken ? (
+                                  <FavoriteIcon className='CardLikeOuter' />
+                                ) : (
+                                  <FavoriteBorderIcon className='CardLikeOuter' />
+                                )}
+                              </IconButton>
+                              <p className="noOfLikes">
+                                {design.likes.length}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </li>
+                ))}
+                {isFilteredDesign.length <= 0 ? (
+                  <div className="NotFoundDesignCont">
+                    <img src={NotFound} alt="" />
+                    <h1>It looks like Design has not found !</h1>
+                  </div>
+                ) : ''}
+              </ul>
+            </section>
+          ) : (
+            <>
+              <section className="blank_msg">
+                <div className="AnimatedSvgContainer">
+                  <img src={`${selectedMode === 'light' ? AnimatedEmptyMsgMp4Light : AnimatedEmptyMsgMp4Dark}`} alt="Gif" autoPlay />
+                </div>
+                <h1 className="EmptyMsg">
+                  It looks like you haven't uploaded anything,<br></br> To start and showcase your work click on the plus icon resides at bottom right corner
+                </h1>
+              </section>
+            </>
+          )
+          }
+        </>
+      )}
+      <section className={`Main_Fully_Open_Design ${openFullyDesign == true ? 'active' : ''}`} onClick={handleCloseFullyOpenDesign} >
+        <IconButton className='IconButtonClose' onClick={handleCloseFullyOpenDesign}>
+          <FontAwesomeIcon icon={faXmark} className='XmarkIco' />
+        </IconButton>
+        <div className="FullyOpenDesignSection" ref={StickyHeaderFODRef}>
+          <div className="InnerFullyOpenDesign" onClick={(e) => e.stopPropagation()}>
+            <div className="InnerFullyOpenDesignCont">
+              <div className="FOD_title_cont">
+                <h1 className="FOD_title">
+                  {isFODLoading ? (
+                    <Skeleton variant="rectangular" sx={{ borderRadius: '5px', width: "100px", height: "50px" }} id="FOD_title_skele" />
+
+                  ) : (
+                    `${singleDesign.title}`
+                  )}
+                </h1>
+              </div>
+              <div className={`sticky_header ${isFullyOpenDesignScrolled ? 'active' : ''}`} >
+                <div className="sticky_header_cont">
+                  <div className="sticky_header_user_cont">
+                    {isFODLoading ? (
+                      <Skeleton variant="circular" width={40} height={40} className='Circular_skele' />
+                    ) : (
+                      <StyledBadge
+                        overlap="circular"
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                        variant="dot"
+                      >
+                        <Avatar alt="Remy Sharp" src={singleDesignUD[1]} />
+                      </StyledBadge>
+                    )}
+                    <div className="user_details">
+                      <h3 className="user_name">
+                        {isFODLoading ? (
+                          <Skeleton variant="rectangular" sx={{ borderRadius: '5px', width: "100px", height: "30px" }} id="user_name_skele" />
+                        ) : (
+                          `${singleDesignUD[0]}`
+                        )}
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+                <div className="sticky_header_like_message_cont">
+                  {isFODLoading ? (
+                    <>
+                      <Skeleton variant="circular" width={40} height={40} className='Circular_skele' />
+                      <Skeleton variant="circular" width={40} height={40} className='Circular_skele' />
+                    </>
+                  ) : (
+                    <>
+                      <IconButton onClick={(e) => handleToggleLike(singleDesign._id, e)}
+                        className='Sticky_Ico' title='like this design'>
+                        {singleDesign.likes.includes(singleDesign.userId) ? (
+                          <FavoriteIcon className='FODLikeIco' />
+                        ) : (
+                          <FavoriteBorderIcon className='FODLikeIco' />
+                        )}
+                      </IconButton>
+                      <IconButton className='Sticky_Ico' title='put a comment' onClick={() => handleMessageClicked(singleDesign._id)}>
+                        <CommentIcon />
+                      </IconButton>
+                    </>
+                  )}
+                </div>
+              </div>
+              {isFODLoading ? (
+                <Skeleton variant="rectangular" sx={{ borderRadius: '5px', width: "100%", height: "50px" }} id="accordian_skele" />
+              ) : (
+                <Accordion>
+                  <AccordionSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1-content"
+                    id="panel1-header"
+                  >
+                    File Types
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    {singleDesign.files && singleDesign.files.map((file, index) => (
+                      <Chip key={index} label={file.type} />
+                    ))}
+                  </AccordionDetails>
+                </Accordion>
+              )}
+
+              <div className="design_cont">
+                <ul className="inner_design_cont">
+                  {singleDesign.files && singleDesign.files.map((file, index) => (
+                    <li key={index} className="design_img_cont">
+                      {isFODLoading ? (
+                        <Skeleton variant="rectangular" sx={{ borderRadius: '5px', width: "100%", height: "100%" }} animation="wave" id='design_img_cont_skele' />
+                      ) : (
+                        <>
+                          {
+                            (file.type.startsWith('video/')) ? (
+                              <video
+                                src={`data:${file.type};base64,${file.data}`}
+                                id="FODdesignVidFile"
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                alt={`File from ${file.filename}`}></video>
+                            ) : (
+                              <img
+                                src={`data:${file.type};base64,${file.data}`} alt={`File from ${file.filename}`}
+                                onClick={() => openLightbox(index)}
+                              />
+                            )
+                          }
+                        </>
+                      )}
+                    </li>
+                  ))
+                  }
+                </ul>
+                {/* Lightbox component */}
+                {lightboxIsOpen && (
+                  <Lightbox
+                    mainSrc={DetailImages[photoIndex]}
+                    nextSrc={DetailImages[(photoIndex + 1) % DetailImages.length]}
+                    prevSrc={DetailImages[(photoIndex + DetailImages.length - 1) % DetailImages.length]}
+                    onCloseRequest={closeLightbox}
+                    onMovePrevRequest={() => setPhotoIndex((photoIndex + DetailImages.length - 1) % DetailImages.length)}
+                    onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % DetailImages.length)}
+                  />
+                )}
+              </div>
+              <div className="design_description_cont">
+                <h3 className='design_description'>
+                  {isFODLoading ? (
+                    <Skeleton variant="rectangular" sx={{ borderRadius: '5px', width: "50vw", height: "60px" }} animation="wave" id='description_skele' />
+                  ) : (
+                    `${singleDesign.description}`
+                  )}
+                </h3>
+              </div>
+              <div className="design_tags_cont">
+                {isFODLoading ? (
+                  <Skeleton variant="rectangular" sx={{ borderRadius: '5px', width: "70%", height: "60px" }} animation="wave" id='design_tags_cont_skele' />
+                ) : (
+                  <>
+                    {
+                      singleDesign.tags && singleDesign.tags.map((tag, index) => (
+                        <Chip variant="outlined" color="warning" label={tag} className='Tag_Chips' key={index} />
+                      ))
+                    }
+                  </>
+                )}
+              </div>
+            </div>
+            <div className="design_sidebar_wrapper">
+              <div className="design_sidebar_icon_cont">
+                <IconButton className='sidebar_Icos' tipname='report' onClick={setReportDialogOpen}>
+                  <ReportGmailerrorredRoundedIcon />
+                </IconButton>
+                <IconButton className='sidebar_Icos' tipname='download' onClick={handleDownload} disabled={downloadInProgress}>
+                  <SimCardDownloadRoundedIcon />
+                </IconButton>
+                {/* <IconButton className='sidebar_Icos' tipname='delete' onClick={() => setConfirmDelActive(true)}>
+                  <DeleteRoundedIcon />
+                </IconButton> */}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {!isEmptyMsgCirLoader &&
+        (
+          <section className="Pagination">
+            <Pagination
+              count={totalPages}
+              page={page}
+              onChange={handlePageChange} />
+          </section>
+        )}
+      {!isEmptyMsgCirLoader &&
+        <Footer />
+      }
+      <BootstrapDialog
+        onClose={handleCloseReportDialog}
+        aria-labelledby="customized-dialog-title"
+        open={reportDialogOpen}
+      >
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
+          Report design
+        </DialogTitle>
+        <IconButton
+          aria-label="close"
+          onClick={handleCloseReportDialog}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon className='CloseBtn' />
+        </IconButton>
+        <DialogContent dividers>
+          <Typography gutterBottom>
+            <FormControl>
+              <RadioGroup
+                aria-labelledby="demo-radio-buttons-group-label"
+                defaultValue={reportReason}
+                name="radio-buttons-group"
+                onChange={handleReportRadioChange}
+                value={reportReason}
+              >
+                <FormControlLabel value="Vulger Content" control={<Radio color='warning' />} label="Vulger Content" sx={{
+                  '& .MuiSvgIcon-root': {
+                    fontSize: 29,
+                  },
+                }} />
+                <FormControlLabel value="Violent or repulsive content" control={<Radio color='warning'
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      fontSize: 29,
+                    },
+                  }} />} label="Violent or repulsive content" />
+                <FormControlLabel value="Hateful or abusive content" control={<Radio color='warning'
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      fontSize: 29,
+                    },
+                  }} />} label="Hateful or abusive content" />
+                <FormControlLabel value="Harmful or dangerous act" control={<Radio color='warning'
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      fontSize: 29,
+                    },
+                  }} />} label="Harmful or dangerous act" />
+                <FormControlLabel value="Spam or misleading" control={<Radio color='warning'
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      fontSize: 29,
+                    },
+                  }} />} label="Spam or misleading" />
+                <FormControlLabel value="Copyright Violation" control={<Radio color='warning'
+                  sx={{
+                    '& .MuiSvgIcon-root': {
+                      fontSize: 29,
+                    },
+                  }} />} label="Copyright Violation" />
+              </RadioGroup>
+            </FormControl>
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleReportDesign}>
+            Report
+          </Button>
+        </DialogActions>
+      </BootstrapDialog>
+
+      {downloadInProgress && (
+        <Box sx={{ width: '100%', position: 'fixed', top: '0', right: '0', left: '0', marginBottom: '2rem', zIndex: 1000 }}>
+          <LinearProgress variant="buffer" value={progress} valueBuffer={buffer} color='warning' />
+        </Box>
+      )}
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        limit={1}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={selectedMode === "light" ? "light" : "dark"}
+      />
+      <Dialog
+        open={isNoSessionModalOpen}
+        onClose={handleNoSessionModalClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Login or Register"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            For accessing the features you need to login or register
+          </DialogContentText>
+          <div>
+            <Button onClick={() => Navigate('/Login')}>
+              Login
+            </Button>
+            <div className="hr">
+              <span></span>
+            </div>
+            <Button onClick={() => Navigate('/Register')}>
+              Register
+            </Button>
+          </div>
+        </DialogContent>
+        {/* <DialogActions>
+          <Button onClick={handleNoSessionModalClose}>Disagree</Button>
+          <Button onClick={handleNoSessionModalClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions> */}
+      </Dialog>
+    </>
+  );
+}
+export default Home;

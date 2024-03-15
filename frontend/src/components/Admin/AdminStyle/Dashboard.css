@@ -1,0 +1,43 @@
+@media (max-width: 916px) {
+  .MuiPaper-root.MuiPaper-outlined.MuiPaper-rounded.MuiCard-root.css-1m2t48e-MuiPaper-root-MuiCard-root {
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 900px) {
+  .MuiGrid-root.MuiGrid-container.MuiGrid-spacing-xs-2.css-mhc70k-MuiGrid-root {
+    flex-direction: column;
+  }
+  .MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-4.css-gj1fbr-MuiGrid-root {
+    flex: 1 1 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+  .MuiGrid-root.MuiGrid-item.MuiGrid-grid-xs-8.css-vok43g-MuiGrid-root {
+    flex: 1 1 100%;
+    max-width: 100%;
+    width: 100%;
+  }
+  .css-6fvig8-MuiCardContent-root:last-child {
+    display: flex;
+    justify-content: center;
+  }
+  .p-chart.doughnutChart {
+    max-width: 30rem;
+  }
+}
+@media (max-width: 650px) and (min-width: 601) {
+  .p-chart.doughnutChart {
+    max-width: 25rem;
+  }
+}
+@media (max-width: 600px) {
+  main.MuiBox-root.css-1v5u2yv {
+    max-width: 100%;
+  }
+}
+@media (max-width: 370px) {
+  .p-chart.doughnutChart {
+    height: 250px;
+    max-width: 250px;
+  }
+}/*# sourceMappingURL=Dashboard.css.map */

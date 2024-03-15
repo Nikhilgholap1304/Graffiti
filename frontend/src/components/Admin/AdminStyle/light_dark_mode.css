@@ -1,0 +1,44 @@
+.light-mode {
+  --table_whole_brdr: #dfe7ef;
+  --table_border: #e9ecef;
+  --table_clr: #495057;
+  --table_th_bg: #f9fafb;
+  --table_th_clr: #374151;
+  --table_tr_clr: #495057;
+  --table_bg: #fff;
+  --table_input_text_bg: #ffffff;
+  --table_input_text_brdr: #e5e7eb;
+  --table_icon_clr: #6c757d;
+  --table_icon_hvr_clr: #495057;
+  --table_icon_hvr_bg_clr: #e9ecef;
+  
+  /* Paginator */
+  --p_highlight_bg: #fff3e0;
+  --p_highlight_brdr_clr: #fff3e0;
+  --p_highlight_clr: #495057;
+  --p_hvr_bg: #e9ecef;
+  --p_hvr_clr: #495057;
+  --p_clm_overlay_clr: #495057;
+}
+
+.dark-mode {
+  --table_whole_brdr: #2f3031;
+  --table_border: #424b57;
+  --table_clr: rgba(255, 255, 255, 0.87);
+  --table_th_bg: #2c2c2c;
+  --table_th_clr: rgba(255, 255, 255, 0.87);
+  --table_tr_clr: rgba(255, 255, 255, 0.87);
+  --table_bg: #121212;
+  --table_input_text_brdr: #424b57;
+  --table_input_text_bg: #111827;
+  --table_icon_hvr_clr: rgba(255, 255, 255, 0.87);
+  --table_icon_clr: rgba(255, 255, 255, 0.6);
+  --table_icon_hvr_bg_clr: rgba(255, 255, 255, 0.03);
+  /* Paginator */
+  --p_highlight_bg: rgba(251, 191, 36, 0.16);
+  --p_highlight_brdr_clr: rgba(251, 191, 36, 0.16);
+  --p_highlight_clr: rgba(255, 255, 255, 0.87);
+  --p_hvr_bg: rgba(255, 255, 255, 0.03);
+  --p_hvr_clr: rgba(255, 255, 255, 0.87);
+  --p_clm_overlay_clr: rgba(255, 255, 255, 0.87);
+}

@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Mooli&family=Playfair+Display+SC&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+.ButtonGrp {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem;
+}
+.uploadHeading {
+  width: 100%;
+  text-align: center;
+  h1 {
+    font-size: 3rem;
+    font-family: "Poppins";
+    font-weight: 500;
+    color: var(--UploadHeaderClr);
+  }
+}
+.ProjectUpload {
+  padding: 2rem 10rem;
+  overflow-x: hidden;
+}
+.titleInput {
+  margin: 2rem 0;
+}
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation0.MuiAlert-root.MuiAlert-standardInfo.MuiAlert-standard.css-1fuz9qr-MuiPaper-root-MuiAlert-root {
+  margin-top: 1rem;
+}
+.tagInputContainer {
+  margin: 2rem 0;
+}
+.MuiFormControl-root.css-1v4v4v9-MuiFormControl-root {
+  width: 100%;
+}
+li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.MuiMenuItem-root.MuiMenuItem-gutters.Mui-selected.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  background-color: rgb(210 148 25 / 8%);
+}
+li.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.MuiMenuItem-root.MuiMenuItem-gutters.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root {
+  font-size: 1.5rem;
+}
+.files-ui-footer {
+  padding-left: 7px;
+}
+.files-ui-header {
+  padding: 0.2rem 0.2rem 0 0;
+}
+button.material-button-root.material-button.contained.contained-3 {
+  display: none;
+}
+button.material-button-root.material-button.contained.contained-2 {
+  background: rgba(230, 31, 31, 0.881);
+  border-radius: 0.2rem;
+}
+.MuiAlert-message.css-1pxa9xg-MuiAlert-message {
+  font-size: 1.3rem;
+}
+.MuiTypography-root.MuiTypography-body1.MuiTypography-gutterBottom.MuiAlertTitle-root.css-yslrua-MuiTypography-root-MuiAlertTitle-root{
+  font-size: 1.5rem;
+}
+.TagError{
+  p{
+    margin: 0.3rem 0 0 1.5rem;
+    color: #d64141;
+  }
+}
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorWarning.MuiInputBase-fullWidth.MuiInputBase-formControl.css-nmbvik-MuiInputBase-root-MuiOutlinedInput-root{
+  color: var(--InputClr);
+}
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorWarning.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-multiline.css-1fjslv3-MuiInputBase-root-MuiOutlinedInput-root{
+  color: var(--InputClr);
+}
+label#standard-basic-label{  
+  color: var(--input_plc_holder);
+}
+fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+  border-color: var(--input_brdr_clr);
+}
+
+label#demo-multiple-chip-label{
+  color: var(--input_plc_holder);
+}
+
+.MuiChip-root.MuiChip-filled.MuiChip-sizeMedium.MuiChip-colorDefault.MuiChip-filledDefault.css-gavykb-MuiChip-root{
+  color: var(--input_chip_clr);
+  background-color: var(--input_chip_bg_clr);
+}
+
+.files-ui-file-mosaic-main-container .files-ui-file-mosaic-file-name{
+  color: var(--dsn_doc_title);
+  margin-top: 0.7rem;
+}
+button.material-button-root.material-button.contained.contained-6 {
+  display: none;
+}
+button.material-button-root.material-button.contained.contained-5{
+  background-color: rgb(210 39 25);
+}
+// for dialog
+h2#\:r7\: {
+  font-size: 2.5rem;
+  color: var(--upload_modal_title_clr);
+}
+h2#\:r3\: {
+  font-size: 2.5rem;
+  color: var(--upload_modal_title_clr);
+}
+h2.css-bdhsul-MuiTypography-root-MuiDialogTitle-root{
+  font-size: 2rem;
+}
+p#alert-dialog-slide-description{
+  font-size: 1.5rem;
+  color: var(--upload_modal_desc_clr);
+}
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  font-size: 1.3rem;
+  color: #ff661f;
+}
+button.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.css-1e6y48t-MuiButtonBase-root-MuiButton-root:hover{
+  background-color: rgb(210 88 25 / 4%);
+}
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation24.MuiDialog-paper.MuiDialog-paperScrollPaper.MuiDialog-paperWidthSm.css-1t1j96h-MuiPaper-root-MuiDialog-paper{
+  background-color: var(--signout_popup_bg_clr);
+  max-width: 518px;
+}
+
+@media (min-width: 1000px) {
+  .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorWarning.MuiInputBase-fullWidth.MuiInputBase-formControl.css-nmbvik-MuiInputBase-root-MuiOutlinedInput-root:hover fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border-color: var(--input_brdr_hvr);
+  }
+  .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorWarning.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-multiline.css-1fjslv3-MuiInputBase-root-MuiOutlinedInput-root:hover fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+    border-color: var(--input_brdr_hvr);
+  }
+  .MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorWarning.MuiInputBase-formControl.css-us6z92-MuiInputBase-root-MuiOutlinedInput-root:hover fieldset.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline{
+    border-color: var(--input_brdr_hvr);
+  }
+}
+@media (max-width: 700px) {
+  .ProjectUpload {
+    padding: 2rem 5rem;
+  }
+}
+@media (max-width: 600px) {
+  .fui-dropzone-root.fui-dropzone-border.files-ui-dropzone-extra-1.clickable {
+    min-height: 21.2rem;
+  }
+  .MuiTypography-root.MuiTypography-body1.MuiTypography-gutterBottom.MuiAlertTitle-root.css-yslrua-MuiTypography-root-MuiAlertTitle-root{
+    font-size: 1.35rem;
+  }
+}
+@media (max-width: 500px) {
+  .ProjectUpload {
+    padding: 2rem 2rem;
+  }
+  .uploadHeading h1 {
+    font-size: 2.5rem;
+  }
+  .MuiAlert-message.css-1pxa9xg-MuiAlert-message {
+    font-size: 1.1rem;
+  }
+}
+@media (min-width: 400px) {
+  .files-ui-dropzone-children-container{
+    gap: 6rem;
+  }
+}
+@media (max-width: 400px) {
+  .uploadHeading h1 {
+    font-size: 2rem;
+  }
+  .fui-dropzone-root.fui-dropzone-border.files-ui-dropzone-extra-1.clickable {
+    min-height: 17rem;
+  }
+  .files-ui-dropzone-children-container{
+    padding: 0.5rem 0.5rem;
+  }
+  .files-ui-file-mosaic-main-container.files-ui-tooltip{
+    scale: 0.75;
+  }
+}

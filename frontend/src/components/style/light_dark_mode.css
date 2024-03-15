@@ -1,0 +1,192 @@
+.light-mode {
+  --internal-light-dark-disabled: rgba(16, 16, 16, 0.3);
+  --body_background: #f9f9f9;
+  --main_background: #FFA000;
+  --mode_bg_clr: #fff;
+  --mode_clr: #333;
+  --mode_hover_bg: rgb(255, 235, 191);
+  --up_arrow_scroll_bg: #ff6f00e1;
+  --menu_hover: #211d1d76;
+  --profile_dropdown: #fcfcfc;
+  --profile_dropdown_color: #333;
+  --profile_dropdown_icon_color: #d68700;
+  --profile_dropdown_hover_color: #ffe9c2;
+  --profile_dropdown_lastpart_bg_color: rgba(0, 0, 0, 0.1);
+  --search_cont_bg: #fff;
+  --search_input_bar_clr: #666;
+  --search_input_bar_bg: #fff;
+  --search_input_icon_clr: #474034;
+  --search_input_icon_bg: #fff;
+  --light_border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  --DesignNotFound: #7b7b7b;
+  /* no session modal */
+  --or_border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  --or_bg_clr: #fff;
+  --or_clr: #999;
+  /* for profile page */
+  --header3_bg: #fff;
+  --header3_brdr: 0.1rem solid #e0dbcf;
+  --back_btn_clr: #504335;
+  --brand_hover_clr: #cb7600;
+  --profile_menu_item_brdr: 0.4rem solid transparent;
+  --profile_menu_item_hover: 0.4rem solid #c3c3c3;
+  --sub_header_btm_border: 0.2rem solid rgba(108, 94, 82, 0.2);
+  --sub_header_font_color: #5c564e;
+  --sub_header_after: #555;
+  --sub_header_li_hover_bg: rgb(0 0 0 / 4%);
+  /* profile-right_compartment */
+  --profile_edit_clr1: #0d1216;
+  --profile_edit_clr2: #0d1216;
+  --profile_button_bg1: rgba(64, 87, 109, .07);
+  --profile_button_bg2: rgb(90 100 110 / 15%);
+  --profile_button_bg3: rgba(53, 71, 90, .2);
+  --profile_hr_bg: rgba(57, 76, 96, .15);
+  --input_brdr: rgba(43, 59, 74, .3);
+  --input_hover_brdr: rgba(28, 39, 48, .5);
+  --input_focus_brdr: #ff8e3d;
+  --signout_popup_bg_clr: #fff;
+  --fade_shadow: #fff;
+  --fade_shadow_bottom: transparent;
+  --input_bg: #fff;
+  --i_clr: #666;
+  --skeleton: rgba(0, 0, 0, 0.11);
+  --skeleton1: rgba(0, 0, 0, 0.11);
+  /* Design Upload Page */
+  --UploadHeaderClr: #333;
+  --InputClr: rgba(0, 0, 0, 0.87);
+  --input_plc_holder: rgba(0, 0, 0, 0.6);
+  --input_brdr_clr: rgba(0, 0, 0, 0.23);
+  --input_brdr_hvr: rgba(92, 92, 92, 0.87);
+  --input_chip_clr: rgba(0, 0, 0, 0.87);
+  --input_chip_bg_clr: rgba(0, 0, 0, 0.08);
+  --dsn_doc_title: #333;
+  --upload_modal_title_clr: #333;
+  --upload_modal_desc_clr: rgba(0, 0, 0, 0.6);
+  /*  */
+  --UploadPlusIconBgClr: #505050;
+  --UploadPlusIconBgClrHvr: rgb(72, 72, 72);
+  --UploadPlusIconClr: rgb(255, 255, 255);
+  --UploadPlusIconTooltipMsgBgClr: rgba(81, 81, 81, 0.78);
+  --CardUploaderName_NoClr: #555;
+  --CardLike_View_CommentClr: rgba(0, 0, 0, 0.54);
+  --Circular_loader_clr: #ff8d47;
+  /* Fully Design */
+  --FOD_Bg: #fff;
+  --Sticky_header_brdr_clr: rgba(0, 0, 0, 0.1);
+  --Sticky_header_bx_shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  --Fully_Open_Design_Txt_Color: #0d0c22;
+  --FOD_Tooltip_clr: #fff;
+  --FOD_Btn_Hover_Bg_clr: rgba(0, 0, 0, 0.04);
+  --FOD_Btn_Hvr_clr: #ff9d00;
+  --FOD_Accordian_Bg_Clr: #1a1a1a;
+  --FOD_Accordian_Clr: #efe6e1;
+  --FOD_Accordian_Bg_Clr: #eee;
+  --FOD_Accordian_Clr: #585858;
+  --FOD_Report_Model_clr1: rgba(0, 0, 0, 0.87);
+  --FOD_Report_Model_clr2: rgba(0, 0, 0, 0.6);
+  --FOD_Report_Model_radio_act_clr: #ed6c02;
+  /* Pagination color */
+  --Pagination_clr: rgba(0, 0, 0, 0.87);
+  --Pagination_bg_clr: rgba(0, 0, 0, 0.08);
+  --Pagination_hvr_clr: rgba(0, 0, 0, 0.04);
+  --Pagination_selected_hvr_clr: rgba(0, 0, 0, 0.12);
+  /* Category Component */
+  --search_header_clr: #fff3e6;
+  --search_header_border: 0.1rem solid rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode {
+  --internal-light-dark-disabled: rgba(255, 255, 255, 0.3);
+  --body_background: #1e1a1a;
+  --main_background: #FFA000;
+  --mode_bg_clr: #231e1e;
+  --mode_clr: #a7a7a7;
+  --mode_hover_bg: rgb(53 32 29);
+  --up_arrow_scroll_bg: #fff3ebe6;
+  --menu_hover: #1e1a1a;
+  --profile_dropdown: #0c0803;
+  --profile_dropdown_color: #f0f0f0;
+  --profile_dropdown_icon_color: #ffe7be;
+  --profile_dropdown_hover_color: #322a18;
+  --profile_dropdown_lastpart_bg_color: rgba(255, 255, 255, 0.1);
+  --search_cont_bg: #333;
+  --search_input_bar_clr: #f1f1f1;
+  --search_input_bar__bg: #333;
+  --search_input_icon_clr: #ffefd7;
+  --search_input_icon_bg: #333;
+  --light_border: 0.1rem solid rgba(255, 255, 255, 0.1);
+  --DesignNotFound: #ffeee3;
+  /* no session modal */
+  --or_border: 0.1rem solid rgb(255 178 142 / 10%);
+  --or_bg_clr: #252627;
+  --or_clr: #695d59;
+  /* for profile page */
+  --header3_bg: #231c12;
+  --back_btn_clr: #f0e1d0;
+  --brand_hover_clr: #ffa220;
+  --profile_menu_item_brdr: 0.1rem solid rgb(255 255 255);
+  --profile_menu_item_hover: 0.1rem solid transparent;
+  --header3_brdr: 0.1rem solid rgba(203, 203, 203, 0.2);
+  --sub_header_btm_border: 0.2rem solid rgba(136, 136, 136, 0.2);
+  --sub_header_font_color: #c1b7ab;
+  --sub_header_after: #e9ded0;
+  --sub_header_li_hover_bg: #ffffff0b;
+  /* profile-right_compartment */
+  --profile_edit_clr1: hsla(0, 0%, 100%, .9);
+  --profile_edit_clr2: #fff;
+  --profile_button_bg1: rgb(40, 41, 43);
+  --profile_button_bg2: hsl(220, 3%, 23%);
+  --profile_button_bg3: rgb(70, 71, 73);
+  --popup_btn_hover: hsla(0, 0%, 100%, 0.07);
+  --profile_hr_bg: rgb(58, 59, 61);
+  --input_brdr: hsla(0, 0%, 100%, .3);
+  --input_hover_brdr: hsla(0, 0%, 100%, .5);
+  --input_focus_brdr: #ff8e3d;
+  --signout_popup_bg_clr: #252627;
+  --fade_shadow: #18191b;
+  --fade_shadow_bottom: #18191b;
+  --input_bg: #18191b;
+  --i_clr: #fff;
+  --skeleton: #514635;
+  --skeleton1: rgb(255 255 255 / 11%);
+  /* Design Upload Page */
+  --UploadHeaderClr: #999;
+  --InputClr: rgb(238 238 238 / 87%);
+  --input_plc_holder: rgb(241 241 241 / 60%);
+  --input_brdr_clr: rgb(255 255 255 / 23%);
+  --input_brdr_hvr: rgba(247, 247, 247, 0.87);
+  --input_chip_clr: rgba(233, 233, 233, 0.87);
+  --input_chip_bg_clr: rgba(174, 174, 174, 0.08);
+  --dsn_doc_title: #999;
+  --upload_modal_title_clr: #fff;
+  --upload_modal_desc_clr: rgba(255, 255, 255, 0.7);
+  /*  */
+  --UploadPlusIconBgClr: rgb(89 72 59);
+  --UploadPlusIconBgClrHvr: rgb(90, 59, 0);
+  --UploadPlusIconClr: rgb(243 207 153);
+  --UploadPlusIconTooltipMsgBgClr: rgba(161, 78, 0, 0.78);
+  --CardUploaderName_NoClr: #999;
+  --CardLike_View_CommentClr: rgb(255 255 255 / 77%);
+  --Circular_loader_clr: #e4c2ad;
+  /* Fully Design */
+  --FOD_Bg: #222;
+  --Sticky_header_brdr_clr: rgba(255, 255, 255, 0.1);
+  --Sticky_header_bx_shadow: 0 0.5rem 1.5rem rgba(190, 190, 190, 0.1);
+  --Fully_Open_Design_Txt_Color: #efe6e1;
+  --FOD_Tooltip_clr: #000000;
+  --FOD_Btn_Hover_Bg_clr: rgba(255, 255, 255, 0.04);
+  --FOD_Btn_Hvr_clr: #ffae00;
+  --FOD_Accordian_Bg_Clr: #1a1a1a;
+  --FOD_Accordian_Clr: #efe6e1;
+  --FOD_Report_Model_clr1: rgba(255, 239, 230, 0.7);
+  --FOD_Report_Model_clr2: rgba(255, 244, 235, 0.87);
+  --FOD_Report_Model_radio_act_clr: #ed6c02;
+  /* Pagination color */
+  --Pagination_clr: rgb(255, 255, 255);
+  --Pagination_bg_clr: rgba(255, 255, 255, 0.16);
+  --Pagination_hvr_clr: rgba(255, 255, 255, 0.08);
+  --Pagination_selected_hvr_clr: rgba(255, 255, 255, 0.24);
+  /* Category Component */
+  --search_header_clr: #222;
+  --search_header_border: 0.1rem solid rgba(255, 255, 255, 0.1);
+}

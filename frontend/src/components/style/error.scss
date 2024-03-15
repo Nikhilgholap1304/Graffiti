@@ -1,0 +1,57 @@
+.message_cont {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  padding-top: 18rem;
+  position: relative;
+  .error {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 20rem;
+    text-align: center;
+    color: #333;
+    opacity: 0.2;
+    z-index: -1;
+  }
+  .err_head {
+    padding: 0 2rem;
+    font-size: 4rem;
+  }
+  p {
+    padding: 0 2rem;
+    font-size: 1.5rem;
+    color: #444;
+  }
+  .link {
+    font-size: 2rem;
+    margin: 20rem 0 0 0;
+    line-height: 10rem;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    outline: none;
+    border: 0.2rem solid rgba(255, 255, 255, 0.1);
+    background: #ff7300;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: 0.2rem 0.3rem 1.2rem rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: #fff;
+      color: #ffae00;
+      border: 0.2rem solid #ffae00;
+    }
+    &:active {
+      box-shadow: 0rem 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+@media (max-width: 440px) {
+  .message_cont {
+    padding-top: 12rem;
+    .error {
+      font-size: 13rem;
+    }
+  }
+}
