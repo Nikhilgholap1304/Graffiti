@@ -724,6 +724,7 @@ const Home = () => {
             <li
               onMouseEnter={handleMouseEnterGlimps1}
               onMouseLeave={handleMouseLeaveGlimps}
+              onClick={() => Navigate('/Vector')}
             >
               <div className="genre_img_container">
                 <div className="genre_img_container_border">
@@ -737,6 +738,7 @@ const Home = () => {
             <li
               onMouseEnter={handleMouseEnterGlimps2}
               onMouseLeave={handleMouseLeaveGlimps}
+              onClick={() => Navigate('/Landing Pages')}
             >
               <div className="genre_img_container">
                 <div className="genre_img_container_border">
@@ -750,6 +752,7 @@ const Home = () => {
             <li
               onMouseEnter={handleMouseEnterGlimps3}
               onMouseLeave={handleMouseLeaveGlimps}
+              onClick={() => Navigate('/Themes')}
             >
               <div className="genre_img_container">
                 <div className="genre_img_container_border">
@@ -763,6 +766,7 @@ const Home = () => {
             <li
               onMouseEnter={handleMouseEnterGlimps4}
               onMouseLeave={handleMouseLeaveGlimps}
+              onClick={() => Navigate('/Portfolios')}
             >
               <div className="genre_img_container">
                 <div className="genre_img_container_border">
@@ -776,6 +780,7 @@ const Home = () => {
             <li
               onMouseEnter={handleMouseEnterGlimps5}
               onMouseLeave={handleMouseLeaveGlimps}
+              onClick={() => Navigate('/Paralax')}
             >
               <div className="genre_img_container">
                 <div className="genre_img_container_border">
