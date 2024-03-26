@@ -39,6 +39,7 @@ import default_panda from "../img/default_panda.png";
 import AdminDp from "../img/AdminDp.png";
 import UsersData from './UsersData';
 import DesignersData from './DesignersData';
+import { green, deepPurple } from '@mui/material/colors';
 import "./AdminStyle/light_dark_mode.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -251,7 +252,7 @@ function ResponsiveDrawer() {
       pending: "Logging out...",
       success: "Logout Successful",
       error: "Error"
-    }, { className: 'toast-message' } );
+    }, { className: 'toast-message' });
     const AdminSessionToken = localStorage.getItem('AdminSessionToken');
     const response = await fetch("/adminLogout", {
       method: "POST",
@@ -260,7 +261,7 @@ function ResponsiveDrawer() {
         Authorization: AdminSessionToken,
       },
     });
-    
+
   };
 
   const AdminSessionToken = localStorage.getItem('AdminSessionToken')
@@ -330,7 +331,9 @@ function ResponsiveDrawer() {
               <ArrowRight sx={{ position: 'absolute', right: 4, opacity: 0 }} />
             </IconButton>
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, ml: 1 }}>
-              <Avatar alt="Admin" src={default_panda} sx={{ width: 32, height: 32 }} />
+              <Avatar alt="Admin"
+                // src={default_panda} 
+                sx={{ width: 32, height: 32, bgcolor: deepPurple['A200'] }}>A</Avatar>
             </IconButton>
             <Menu
               id="basic-menu"

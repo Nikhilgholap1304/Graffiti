@@ -39,7 +39,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const Comments = ({ 
+const Comments = ({
   // designId , openCommentSection, setOpenCommentSection 
 }) => {
 
@@ -56,6 +56,8 @@ const Comments = ({
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const sessionToken = localStorage.getItem('sessionToken');
+  const [userPic, setUserPic] = useState('');
+  const [userName, setUserName] = useState('');
   const Navigate = useNavigate();
 
   const { designId } = useParams();
@@ -131,9 +133,16 @@ const Comments = ({
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await axios.get(`/get_comment/${designId}`); // Ensure correct URL format
+        const config = {
+          headers: {
+            'Authorization': sessionToken
+          }
+        }
+        const res = await axios.get(`/get_comment/${designId}`, config); // Ensure correct URL format
         if (res.status === 200) {
           setMessages(res.data.messages);
+          setUserPic(res.data.userPic);
+          setUserName(res.data.userName);
         }
       } catch (error) {
         console.error('Error fetching comments:', error);
@@ -170,7 +179,7 @@ const Comments = ({
   //     setLoader(false);
   //   }, 2000);
   // };
-  
+
 
   const handleClose = () => {
     // setOpenCommentSection(false);
@@ -260,7 +269,8 @@ const Comments = ({
         <AppBar position="fixed" color="inherit" sx={{ top: 'auto', bottom: 0 }}>
           <Toolbar fullWidth sx={{ padding: "20px 10px" }}>
             <Box sx={{ display: 'flex', alignItems: 'flex-start', width: "100%" }}>
-              <Avatar sx={{ color: 'action.active', mr: 2 }} />
+              <Avatar sx={{ color: 'action.active', mr: 2 }} src={userPic ? userPic : ''} />
+              {!userPic && userName.length > 0 ? userName.charAt(0) : ''}
               <Stack direction='column' fullWidth sx={{ width: '100%' }} spacing={1}>
                 <TextField
                   error={titleError}

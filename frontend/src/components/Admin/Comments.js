@@ -252,7 +252,7 @@ const Comments = ({ designId, openCommentSection, setOpenCommentSection }) => {
         <AppBar position="fixed" color="inherit" sx={{ top: 'auto', bottom: 0 }}>
           <Toolbar fullWidth sx={{ padding: "20px 10px" }}>
             <Box sx={{ display: 'flex', alignItems: 'flex-start', width: "100%" }}>
-              <Avatar sx={{ color: 'action.active', mr: 2 }} />
+              <Avatar sx={{ color: 'action.active', mr: 2 }}>a</Avatar>
               <Stack direction='column' fullWidth sx={{ width: '100%' }} spacing={1}>
                 <TextField
                   error={titleError}

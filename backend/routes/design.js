@@ -965,9 +965,11 @@ router.post('/post_comment_admin/:designId', async (req, res) => {
 
 router.get('/get_comment/:designId', async (req, res) => {
   try {
+    const sessionToken = req.header('Authorization');
+    const user = await User.findOne({ sessionToken })
     const { designId } = req.params;
     const messages = await Comment.find({ designId });
-    res.status(200).json({ messages });
+    res.status(200).json({ messages, userPic: user.profilePic, userName: user.name });
   } catch (err) {
     console.log('error:', err); // Log any errors that occur
     res.status(500).json({ error: 'An internal server error occurred' });
