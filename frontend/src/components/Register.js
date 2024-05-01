@@ -174,7 +174,7 @@ function Register() {
       <section className="container">
         <div className="left_container">
           <div className="logo">
-            <h3>graffiti</h3>
+            <h3>Graffiti</h3>
           </div>
           <h3>Let's Illustrate this World, by Befitting your Design.</h3>
           <div className="front_vector">

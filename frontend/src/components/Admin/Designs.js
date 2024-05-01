@@ -693,11 +693,11 @@ const Designs = () => {
               aria-current="page"
               sx={{ cursor: "pointer" }}
             >
-              Reported Designs
+              Designs
             </Link>
           </Breadcrumbs>
           <Typography variant='h5' sx={{ my: 2 }}>
-            Reported Designs
+            Designs
           </Typography>
           {/* Card section starts */}
           {isEmptyMsgCirLoader ? (
@@ -756,9 +756,9 @@ const Designs = () => {
                                         background: '#fff'
                                       }} disabled>
                                         {(design.likes.includes(sessionAdminId)) ? (
-                                          <FavoriteIcon className={DesignStyle.FavIcon} style={{fontSize: '1.5rem'}}/>
+                                          <FavoriteIcon className={DesignStyle.FavIcon} style={{ fontSize: '1.5rem' }} />
                                         ) : (
-                                          <FavoriteBorderIcon className={DesignStyle.FavIcon} style={{fontSize: '1.5rem'}}/>
+                                          <FavoriteBorderIcon className={DesignStyle.FavIcon} style={{ fontSize: '1.5rem' }} />
                                         )}
                                       </IconButton>
                                       <span className={DesignStyle.LikeToolTip}>{(design.likes.includes(sessionAdminId)) ? (
@@ -768,16 +768,16 @@ const Designs = () => {
                                       )}</span>
                                     </div>
                                     <div className={DesignStyle.BookMark_cont}>
-                                      <IconButton className={DesignStyle.BookMarkIconCont} 
-                                      style={{
-                                        color: '#666',
-                                        background: '#fff'
-                                      }} 
-                                      onClick={(e) => handleToggleBookMark(design._id, e)} disabled>
+                                      <IconButton className={DesignStyle.BookMarkIconCont}
+                                        style={{
+                                          color: '#666',
+                                          background: '#fff'
+                                        }}
+                                        onClick={(e) => handleToggleBookMark(design._id, e)} disabled>
                                         {(design.bookmarks.includes(sessionAdminId)) ? (
-                                          <BookmarkAddedRoundedIcon className={DesignStyle.BM_Icon} style={{fontSize: '1.5rem'}}/>
+                                          <BookmarkAddedRoundedIcon className={DesignStyle.BM_Icon} style={{ fontSize: '1.5rem' }} />
                                         ) : (
-                                          <BookmarkAddOutlinedIcon className={DesignStyle.BM_Icon} style={{fontSize: '1.5rem'}}/>
+                                          <BookmarkAddOutlinedIcon className={DesignStyle.BM_Icon} style={{ fontSize: '1.5rem' }} />
                                         )}
                                       </IconButton>
                                       <span className={DesignStyle.BMToolTip}>{(design.bookmarks.includes(sessionAdminId)) ? (

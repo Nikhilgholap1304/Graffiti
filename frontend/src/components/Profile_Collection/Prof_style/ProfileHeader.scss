@@ -8,7 +8,7 @@
   cursor: pointer;
   transition: 0.3s ease-in-out;
   scale: 0.9;
-  z-index: 500;
+  z-index: 3;
   &.scroll_top_active {
     scale: 1;
     opacity: 1;
