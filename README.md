@@ -1,10 +1,10 @@
-# Graffiti
+# Graffiti 🎨
 
-## Description
+## 📝 Description
 
 Graffiti is a social platform designed for frontend designer enthusiasts to share, discover, and engage with form of web designs with utilities from around the world. Users can upload their own design creations, explore references by other users, and connect with fellow designers. Whether you're a seasoned design artist or simply appreciate the vibrant supportive templates, **Graffiti** provides a space to showcase your talent and connect with like-minded individuals.
 
-## Table of Contents
+## 🧾 Table of Contents
 
 1. [Installation](#installation)
 2. [Features](#features)
@@ -12,9 +12,9 @@ Graffiti is a social platform designed for frontend designer enthusiasts to shar
 4. [Contributing](#contributing)
 5. [License](#license)
 
-## Installation
+## 📥 Installation
 
-To get started with Graffiti on your local machine, follow these steps:
+To get started 🚀 with Graffiti on your local machine, follow these steps:
 
 1. **Clone the repository:**
 
@@ -36,7 +36,7 @@ To get started with Graffiti on your local machine, follow these steps:
    ```bash
    npm start
 
-## Features
+## 🚀 Features
 
 - **User Authentication:** Users can sign up for an account, log in, and securely authenticate their identity.
 - **Upload Design:** Designers can upload design tempalates of various categories to share with the community and users.
@@ -45,7 +45,7 @@ To get started with Graffiti on your local machine, follow these steps:
 - **Search and Discover:** Explore designs by categories, tags, or artists to discover new and inspiring artwork.
 - and many more things are there just explore already...
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 ### Frontend:
 
@@ -63,7 +63,7 @@ To get started with Graffiti on your local machine, follow these steps:
 - **MongoDB:** A NoSQL database for storing user data, design metadata, and comments.
 - **Mongoose:** An ODM (Object Data Modeling) library for MongoDB and Node.js.
 
-## Contributing
+## 🤝 Contributing
 
 We welcome contributions from the community to help improve Graffiti! If you'd like to contribute, please follow these guidelines:
 
@@ -72,6 +72,6 @@ We welcome contributions from the community to help improve Graffiti! If you'd l
 3. Test your changes thoroughly.
 4. Submit a pull request with a clear description of your changes.
 
-## License
+## 📄 License
 
-This project is licensed under the MIT License. Feel free to use, modify, and distribute the code for both personal and commercial projects.
+This project is licensed under the [License](LICENSE). Feel free to use, modify, and distribute the code for both personal and commercial projects.
