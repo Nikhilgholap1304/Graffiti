@@ -158,12 +158,18 @@ router.post("/upload_design", async (req, res) => {
       }
       else if (numDesignsUploaded > 3) {
         // If the user has uploaded three or more designs, update the designer schema
-        const designerData = new Designer({
-          userId: user._id,
-          isDesigner: true, // Set isDesigner to true
-          designsUploaded: numDesignsUploaded,
-        });
-        await designerData.save();
+        const existingDesigner = await Designer.findOne({ userId: user._id });
+        if (!existingDesigner) {
+          const designerData = new Designer({
+            userId: user._id,
+            isDesigner: true, // Set isDesigner to true
+            designsUploaded: numDesignsUploaded,
+          });
+          await designerData.save();
+        } else {
+          existingDesigner.designsUploaded = numDesignsUploaded;
+          await existingDesigner.save();
+        }
       }
       // console.log('Design saved:', savedDesign);
       return res.status(200).json({ message: 'Successful', triggerCongratulations });
