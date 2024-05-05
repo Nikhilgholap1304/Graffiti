@@ -4,6 +4,12 @@
 
 Graffiti is a social platform designed for frontend designer enthusiasts to share, discover, and engage with form of web designs with utilities from around the world. Users can upload their own design creations, explore references by other users, and connect with fellow designers. Whether you're a seasoned design artist or simply appreciate the vibrant supportive templates, **Graffiti** provides a space to showcase your talent and connect with like-minded individuals.
 
+## 🎞 Demo Images
+
+![Weatherly Preview](image1.png)
+
+![Weatherly Preview](image2.png)
+
 ## 🧾 Table of Contents
 
 1. [Installation](#installation)
